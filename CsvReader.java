@@ -3,26 +3,26 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CsvReader {
-    public ArrayList<ArrayList<String>> readCsvFile(String filePath) {
+public interface CsvReader {
+    public static ArrayList<ArrayList<String>> readCsvFile(String filePath) {
         String line;
-        String delimiter = ","; 
+        String delimiter = ",";
         ArrayList<ArrayList<String>> data = new ArrayList<>();
 
-        // Read the CSV file
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(delimiter); 
+                String[] values = line.split(delimiter);
                 ArrayList<String> row = new ArrayList<>();
                 for (String value : values) {
-                    row.add(value.trim()); 
+                    row.add(value.trim());
                 }
-                data.add(row); 
+                data.add(row);
             }
         } catch (IOException e) {
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
 
-        return data; 
+        return data;
     }
 }
+
