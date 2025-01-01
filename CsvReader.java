@@ -5,24 +5,24 @@ import java.util.ArrayList;
 
 public class CsvReader {
     public ArrayList<ArrayList<String>> readCsvFile(String filePath) {
-        String line; // Stores each line of the CSV file
-        String delimiter = ","; // Specifies the delimiter used in the CSV file
+        String line;
+        String delimiter = ","; 
         ArrayList<ArrayList<String>> data = new ArrayList<>();
 
         // Read the CSV file
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(delimiter); // Split the line into values
+                String[] values = line.split(delimiter); 
                 ArrayList<String> row = new ArrayList<>();
                 for (String value : values) {
-                    row.add(value.trim()); // Trim whitespace and add to the row
+                    row.add(value.trim()); 
                 }
-                data.add(row); // Add the row to the data list
+                data.add(row); 
             }
         } catch (IOException e) {
-            e.printStackTrace(); // Print stack trace if an error occurs
+            e.printStackTrace(); 
         }
 
-        return data; // Return the parsed data
+        return data; 
     }
 }
