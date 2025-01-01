@@ -1,50 +1,44 @@
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 
 public class moodLists {
-    public ArrayList<String> activityList;
-    public int minIndex;
-    public int maxIndex;
+    protected ArrayList<String> activityList;
+    protected int minIndex;
+    protected int maxIndex;
+    protected ArrayList<Integer> indexList;
+    private String chosenValue;
+    private Integer pointsValue;
 
-    public moodLists(ArrayList<String> activityList, int minIndex, int maxIndex){
+    public moodLists(ArrayList<String> activityList, int minIndex, int maxIndex, ArrayList<Integer> indexList){
         this.activityList=activityList;
         this.minIndex=minIndex;
         this.maxIndex=maxIndex;
-        ArrayList<Integer> indexList = new ArrayList<>();
+        this.indexList=indexList;
         int randomIndex = (int)(Math.random() * ((maxIndex - minIndex) + 1)) + minIndex;
         indexList.add(randomIndex);
-        boolean validIndex=false;
-        while (validIndex!=true){
-            for (int i:indexList){
-                if (Collections.frequency(indexList, randomIndex)>1){
-                    randomIndex = (int)(Math.random() * ((maxIndex - minIndex) + 1)) + minIndex;
-                }
-                else{
-                    validIndex=true;
-                }
-            }
-        }
-        String chosenValue=activityList.get(randomIndex);
-        ArrayList<String> suggestionsList = new ArrayList<>();
-        suggestionsList.add(chosenValue);
+        this.chosenValue=activityList.get(randomIndex);
         Integer pointsValue=null;
-
-
-
         if (randomIndex-minIndex==0){
-            pointsValue=1;
+            this.pointsValue=1;
         }
-        else if (randomIndex-minIndex<=2){
-            pointsValue=3;
+        else if (randomIndex-minIndex==1){
+            this.pointsValue=3;
         }
         else{
-            pointsValue=5;
+            this.pointsValue=5;
         }
-        ArrayList<Integer> pointsList = new ArrayList<>();
-        pointsList.add(pointsValue);
+
+    }
+    public ArrayList<Integer> getIndexList() {
+        return indexList;
     }
 
+    public String getChosenValue() {
+        return chosenValue;
+    }
 
-
+    public Integer getPointsValue() {
+        return pointsValue;
+    }
     }
